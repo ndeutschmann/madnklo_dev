@@ -56,7 +56,7 @@ RUN bash install_texlive.sh
 ENV PATH="/usr/local/texlive/2019/bin/x86_64-linux/:${PATH}"
 
 COPY initialize.sh /home/hep/initialize.sh
-RUN cp -r /home/hep/madnklo /home/hep/code_origin
+RUN mv /home/hep/madnklo /home/hep/code_origin
 
 COPY cleanup.sh .
 RUN ./cleanup.sh
