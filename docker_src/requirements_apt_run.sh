@@ -1,0 +1,9 @@
+ca-certificates
+gfortran
+build-essential
+ghostscript
+libginac6
+emacs
+vim
+less
+dvipng
