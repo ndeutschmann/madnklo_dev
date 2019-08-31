@@ -12,15 +12,21 @@ fi
 
 if [ "$1" = "--docker_update" ]
 then
-	docker pull ndeutschmann/madnklo_dev
+	docker pull madnklo_dev
 	exit
 fi
 
 if [ "$1" = "--initialize" ]
 then
 	echo "running the initialization script"
-	docker run --rm --entrypoint=/home/hep/initialize.sh -v $(pwd)/code:/home/hep/madnklo madnklo_dev
+	docker run --rm\
+	--entrypoint=/home/hep/initialize.sh \
+	-v $(pwd)/code:/home/hep/madnklo\
+	madnklo_dev
 	exit
 fi
 	
-docker run -it --rm -v $(pwd)/code:/home/hep/madnklo madnklo_dev $1
+docker run -it --rm \
+-v $(pwd)/code:/home/hep/madnklo \
+-v $(pwd)/madnklo_persistent:/var/madnklo_persistent \
+madnklo_dev $1
