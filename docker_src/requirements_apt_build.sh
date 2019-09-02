@@ -1,3 +1,4 @@
+git
 wget
 ca-certificates
 gfortran

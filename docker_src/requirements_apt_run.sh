@@ -1,3 +1,5 @@
+git
+wget
 ca-certificates
 gfortran
 build-essential
