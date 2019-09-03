@@ -1,2 +1,2 @@
 #!/bin/bash
-cp -rT /home/hep/code_origin /home/hep/madnklo
+git clone -b master https://github.com/madnklo/madnklo.git /home/hep/madnklo

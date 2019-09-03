@@ -11,16 +11,6 @@ RUN apt-get -y install $(cat /home/hep/requirements_apt_build.sh)
 COPY requirements_pip.sh /home/hep/requirements_pip.sh
 RUN /bin/bash /home/hep/requirements_pip.sh
 
-RUN git clone -b master https://github.com/madnklo/madnklo.git code_origin
-
-WORKDIR /home/hep/code_origin/vendor/CutTools
-RUN make
-WORKDIR /home/hep/code_origin/vendor/IREGI/src
-RUN make
-
-WORKDIR /home/hep/code_origin
-RUN echo "install ninja" | bin/mg5_aMC
-
 WORKDIR /home/hep
 COPY install_lhapdf_6.2.3.sh /home/hep/install_lhapdf.sh
 RUN /home/hep/install_lhapdf.sh
