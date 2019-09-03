@@ -2,7 +2,7 @@
 
 if [ "$1" = "--docker_build" ]
 then
-	docker build --tag=ndeutschmann/madnklo_dev ./docker_src
+	docker build --tag=madnklo/madnklo_dev ./docker_src
 	echo ""
 	echo "================================================================"
 	echo "   New image built. Consider pruning/removing dangling images"
@@ -12,7 +12,7 @@ fi
 
 if [ "$1" = "--docker_update" ]
 then
-	docker pull ndeutschmann/madnklo_dev
+	docker pull madnklo/madnklo_dev
 	exit
 fi
 
@@ -22,7 +22,7 @@ then
 	docker run --rm\
 	--entrypoint=/home/hep/initialize.sh \
 	-v $(pwd)/code:/home/hep/madnklo\
-	ndeutschmann/madnklo_dev
+	madnklo/madnklo_dev
 	echo "Set up the MadNkLO development environment at $(pwd)/code"
 	exit
 fi
@@ -46,4 +46,4 @@ read -t 30 -p  "[press enter (30s)]"
 docker run -it --rm \
 -v $(pwd)/code:/home/hep/madnklo \
 -v $(pwd)/madnklo_persistent:/var/madnklo_persistent \
-ndeutschmann/madnklo_dev $1
+madnklo/madnklo_dev $1
