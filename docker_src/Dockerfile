@@ -30,6 +30,8 @@ RUN make
 
 WORKDIR /home/hep/code_origin
 RUN echo "install ninja" | bin/mg5_aMC
+RUN echo "install collier" | bin/mg5_aMC
+RUN echo "install ginac_mg5_interface" | bin/mg5_aMC
 
 RUN mkdir -p /root/.config/matplotlib ; echo "backend: agg" >>  ~/.config/matplotlib/matplotlibrc
 
