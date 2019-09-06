@@ -19,7 +19,7 @@ RUN apt-get -y update ; apt-get -y install \
 	dvipng ;\
 apt-get autoremove ; apt-get clean
 
-RUN pip install numpy ; pip install bidict vegas mpmath pyjet matplotlib
+RUN pip install numpy ; pip install bidict vegas mpmath pyjet matplotlib pymultinest
 
 RUN git clone -b master https://github.com/madnklo/madnklo.git code_origin
 
@@ -30,6 +30,12 @@ RUN make
 
 WORKDIR /home/hep/code_origin
 RUN echo "install ninja" | bin/mg5_aMC
+
+WORKDIR /home/hep
+COPY install_cuba.sh /home/hep/install_cuba.sh
+RUN ./install_cuba.sh
+ENV LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:/home/hep/Cuba-4.2:${LD_LIBRARY_PATH}
+ENV PYTHONPATH=/usr/lib/x86_64-linux-gnu:/home/hep/Cuba-4.2:${PYTHONPATH}
 
 RUN mkdir -p /root/.config/matplotlib ; echo "backend: agg" >>  ~/.config/matplotlib/matplotlibrc
 

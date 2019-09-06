@@ -21,9 +21,20 @@ then
 	echo "Running the initialization script"
 	docker run --rm\
 	--entrypoint=/home/hep/initialize.sh \
-	-v $(pwd)/code:/home/hep/madnklo\
+	-v $(pwd)/madnklo_src:/home/hep/madnklo\
 	madnklo/madnklo_dev
-	echo "Set up the MadNkLO development environment at $(pwd)/code"
+	echo "Set up the MadNkLO development environment at $(pwd)/madnklo_src"
+	exit
+fi
+
+if [ "$1" = "--bash" ]
+then
+	echo "Running the container in bash mode"
+	docker run -it --rm \
+	-v $(pwd)/madnklo_src:/home/hep/madnklo \
+	-v $(pwd)/madnklo_persistent:/var/madnklo_persistent \
+	--entrypoint=bash \
+	madnklo/madnklo_dev
 	exit
 fi
 
@@ -44,6 +55,6 @@ echo "madnklo_docker.sh --initialize"
 read -t 30 -p  "[press enter (30s)]"
 
 docker run -it --rm \
--v $(pwd)/code:/home/hep/madnklo \
+-v $(pwd)/madnklo_src:/home/hep/madnklo \
 -v $(pwd)/madnklo_persistent:/var/madnklo_persistent \
 madnklo/madnklo_dev $1
