@@ -48,7 +48,7 @@ then
 	exit
 fi
 
-if [ "$1" != "" ]
+if [ \( "$1" != "" \) -a \( ! -f "madnklo_persistent/"$1 \) ]
 then
 	echo "Unknown command option: "$1
 	exit
