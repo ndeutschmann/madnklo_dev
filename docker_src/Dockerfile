@@ -31,6 +31,7 @@ RUN make
 
 WORKDIR /home/hep
 RUN echo "install ninja" | /home/hep/code_origin/bin/mg5_aMC
+RUN echo "install ginac_mg5_interface" | /home/hep/code_origin/bin/mg5_aMC
 
 COPY install_cuba.sh /home/hep/install_cuba.sh
 RUN ./install_cuba.sh
