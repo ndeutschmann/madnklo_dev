@@ -23,6 +23,9 @@ then
 	--entrypoint=/home/hep/initialize.sh \
 	-v $(pwd)/madnklo_src:/home/hep/madnklo\
 	madnklo/madnklo_dev
+	echo "Pulling the latest version for the repo"
+	cd $(pwd)/madnklo_src
+	git pull
 	echo "Set up the MadNkLO development environment at $(pwd)/madnklo_src"
 	exit
 fi
